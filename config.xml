@@ -3,19 +3,19 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.fabricadeplugins.clonegetninjas"
-        version   = "2.0.0">
+        id        = "com.fabricadeplugins.aaguiachegou"
+        version   = "1.0.0">
 
         <!-- LEMBRAR DE MUDAR O APP ID ANTES DE SUBIR O APP NAS LOJAS -->
 
-    <name>Clone GetNinjas</name>
+    <name>A Águia Chegou</name>
 
     <description>
-        Clone GetNinjas - Contrate profissionais qualificados perto de você
+        A Águia Chegou - Contrate profissionais qualificados perto de você
     </description>
 
     <author href="https://fabricadeplugins.tec.br/" email="contato@fabricadeplugins.com.br">
-        Clone GetNinjas
+        A Águia Chegou
     </author>
  
     <!--<engine name="android" spec="^13.0.0" />-->
@@ -32,16 +32,25 @@
     <preference name="exit-on-suspend" value="false" />
     <preference name="disable-cursor" value="false" />
     <preference name="android-installLocation" value="auto" />
-    <preference name="StatusBarBackgroundColor" value="#000" />
+    <preference name="StatusBarBackgroundColor" value="#1b293b" />
    
-    <preference name="AndroidWindowSplashScreenAnimatedIcon" value="www/assets/images/icones/1024x1024.png" />
-    <preference name="AndroidWindowSplashScreenBackground" value="#fff" />
+    <preference name="AndroidWindowSplashScreenAnimatedIcon" value="www/assets/images/icones/splash.png" />
+    <preference name="AndroidWindowSplashScreenBackground" value="#1b293b" />
 
-    <preference name="android-minSdkVersion" value="29" />
+    <preference name="android-minSdkVersion" value="32" />
     <preference name="android-targetSdkVersion" value="35" />
     <preference name="AndroidXEnabled" value="true" />
-    <preference name="StatusBarBackgroundColor" value="#8666d1" />
+    <preference name="StatusBarBackgroundColor" value="#1b293b" />
     <preference name="StatusBarOverlaysWebView" value="false" />
+
+    <plugin name="cordova-plugin-camera" />
+    <plugin name="cordova-plugin-camera-preview" />
+
+    <!-- Plugin File Transfer -->
+    <plugin name="cordova-plugin-file-transfer" />
+
+    <!-- Plugin File (dependência do File Transfer) -->
+    <plugin name="cordova-plugin-file" />
     
 
     <!--
@@ -55,6 +64,8 @@
     <plugin name="cordova-plugin-android-permissions" />
     <plugin name="cordova-plugin-inappbrowser" />
     <plugin name="cordova-plugin-statusbar" />
+    <preference name="StatusBarBackgroundColor" value="#1b293b" />
+
     <plugin name="cordova-plugin-ionic-webview" />
    
 
@@ -67,6 +78,9 @@
     <preference name="ScrollEnabled" value="true" />
 
     <platform name="android">
+
+        <preference name="android-gradlePluginVersion" value="8.5.1" />
+        <preference name="android-gradleVersion" value="8.10.2" />
 
         <icon density="ldpi" height="36" src="www/assets/images/icones/36.png" width="36" />
         <icon density="ldpi" height="40" src="www/assets/images/icones/40.png" width="40" />

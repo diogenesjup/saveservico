@@ -12,27 +12,27 @@ class App {
         this.models  = new Models();
         this.helpers = new Helpers();
 
-        this.nomeApp         = "CLONE GET NINJAS";
-        this.linkApp         = "https://fabrica.servidorseguro.cloud/";
+        this.nomeApp         = "A ÁGUIA CHEGOU";
+        this.linkApp         = "https://aaguiachegou.com/";
         this.nomeMoeda       = "MOEDA";
         this.nomeMoedaPlural = "MOEDAS";
 
         if(ambiente=="HOMOLOGACAO"){
              
-            this.urlDom = "https://fabrica.servidorseguro.cloud/clonegetninjas/app/www/";
-            this.urlApi = "https://fabrica.servidorseguro.cloud/clonegetninjas/apiservicekeys/";
-            this.urlCdn = "https://fabrica.servidorseguro.cloud/clonegetninjas/cdn/";
+            this.urlDom = "https://aaguiachegou.com/app/www/";
+            this.urlApi = "https://aaguiachegou.com/apiservicekeys/";
+            this.urlCdn = "https://aaguiachegou.com/cdn/";
 
         }
         if(ambiente=="PRODUCAO"){
 
-            this.urlDom = "https://resolvaja.tec.br/app/www/";
-            this.urlApi = "https://resolvaja.tec.br/apiservicekeys/";
-            this.urlCdn = "https://resolvaja.tec.br/cdn/";
+            this.urlDom = "https://aaguiachegou.com/app/www/";
+            this.urlApi = "https://aaguiachegou.com/apiservicekeys/";
+            this.urlCdn = "https://aaguiachegou.com/cdn/";
 
         }
 
-        this.urlApiPagto = "https://fabrica.servidorseguro.cloud/clonegetninjas/pay/";
+        this.urlApiPagto = "https://aaguiachegou.com/pay/";
 
         this.token = token;
         this.tokenSms = tokenSms;

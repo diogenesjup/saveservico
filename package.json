@@ -1,24 +1,24 @@
 {
-  "name": "com.fabricadeplugins.clonegetninjas",
-  "version": "2.0.0",
-  "description": "Clone GetNinjas",
+  "name": "com.fabricadeplugins.aaguiachegou",
+  "version": "1.0.0",
+  "description": "A Águia Chegou",
   "main": "index.html",
   "scripts": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diogenesjup/clonegetninjas.git"
+    "url": "git+https://github.com/diogenesjup/aaguiachegou.git"
   },
   "keywords": [
-    "clonegetninjas"
+    "aaguiachegou"
   ],
   "author": "Fabrica de Plugins",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/diogenesjup/clonegetninjas/issues"
+    "url": "https://github.com/diogenesjup/aaguiachegou/issues"
   },
-  "homepage": "https://github.com/diogenesjup/clonegetninjas#readme",
+  "homepage": "https://github.com/diogenesjup/aaguiachegou#readme",
   "devDependencies": {
     "cordova-android": "^13.0.0"
   },

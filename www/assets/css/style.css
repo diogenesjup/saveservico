@@ -96,11 +96,11 @@ label{
     font-weight: normal;
     height: 45px;
     padding-top: 2px;
-    color: #000;
+    color: #fff;
     text-transform: uppercase;
     font-weight: bold;
-    background: #ffe602 !important;
-    border-color: #ffe602 !important;
+    background: #1b293b !important;
+    border-color: #1b293b !important;
 }
 
 .btn-default,
@@ -144,7 +144,8 @@ header .logo{
 header .logo img{
   max-width: 100%;
   height: auto;
-  width: 213px;
+  width: 100px;
+  margin-top: -2px;
 }
 
 header .menu-bar-toggle{
@@ -2194,7 +2195,7 @@ p.apoio-servico{
 
 /* Quando o switch está ativado (checkbox checked) */
 .filtro-categorias input:checked + .slider {
-  background-color: #ffe602;
+  background-color: #1b293b;
 }
 
 .filtro-categorias input:checked + .slider:before {
