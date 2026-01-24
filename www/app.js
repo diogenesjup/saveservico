@@ -1,5 +1,5 @@
 var app = new App(1, 
-				 "A AGUIA CHEGOU", 
+				 "SAVE SERVIÇO", 
 				 "1.0.0", 
 				 "HIBRIDO",
 				 "HOMOLOGACAO",

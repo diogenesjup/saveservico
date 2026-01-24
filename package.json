@@ -1,24 +1,24 @@
 {
-  "name": "com.fabricadeplugins.aaguiachegou",
+  "name": "com.fabricadeplugins.saveservico",
   "version": "1.0.0",
-  "description": "A Águia Chegou",
+  "description": "Save Serviço - Contrate profissionais qualificados perto de você",
   "main": "index.html",
   "scripts": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diogenesjup/aaguiachegou.git"
+    "url": "git+https://github.com/diogenesjup/saveservico.git"
   },
   "keywords": [
-    "aaguiachegou"
+    "saveservico"
   ],
   "author": "Fabrica de Plugins",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/diogenesjup/aaguiachegou/issues"
+    "url": "https://github.com/diogenesjup/saveservico/issues"
   },
-  "homepage": "https://github.com/diogenesjup/aaguiachegou#readme",
+  "homepage": "https://github.com/diogenesjup/saveservico#readme",
   "devDependencies": {
     "cordova-android": "^13.0.0"
   },

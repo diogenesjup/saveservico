@@ -12,27 +12,27 @@ class App {
         this.models  = new Models();
         this.helpers = new Helpers();
 
-        this.nomeApp         = "A ÁGUIA CHEGOU";
-        this.linkApp         = "https://aaguiachegou.com/";
+        this.nomeApp         = "SAVE SERVIÇO";
+        this.linkApp         = "https://saveservico.com.br/";
         this.nomeMoeda       = "MOEDA";
         this.nomeMoedaPlural = "MOEDAS";
 
         if(ambiente=="HOMOLOGACAO"){
              
-            this.urlDom = "https://aaguiachegou.com/app/www/";
-            this.urlApi = "https://aaguiachegou.com/apiservicekeys/";
-            this.urlCdn = "https://aaguiachegou.com/cdn/";
+            this.urlDom = "https://saveservico.com.br/app/www/";
+            this.urlApi = "https://saveservico.com.br/apiservicekeys/";
+            this.urlCdn = "https://saveservico.com.br/cdn/";
 
         }
         if(ambiente=="PRODUCAO"){
 
-            this.urlDom = "https://aaguiachegou.com/app/www/";
-            this.urlApi = "https://aaguiachegou.com/apiservicekeys/";
-            this.urlCdn = "https://aaguiachegou.com/cdn/";
+            this.urlDom = "https://saveservico.com.br/app/www/";
+            this.urlApi = "https://saveservico.com.br/apiservicekeys/";
+            this.urlCdn = "https://saveservico.com.br/cdn/";
 
         }
 
-        this.urlApiPagto = "https://aaguiachegou.com/pay/";
+        this.urlApiPagto = "https://saveservico.com.br/pay/";
 
         this.token = token;
         this.tokenSms = tokenSms;

@@ -3,19 +3,19 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.fabricadeplugins.aaguiachegou"
+        id        = "com.fabricadeplugins.saveservico"
         version   = "1.0.0">
 
         <!-- LEMBRAR DE MUDAR O APP ID ANTES DE SUBIR O APP NAS LOJAS -->
 
-    <name>A Águia Chegou</name>
+    <name>Save Serviço</name>
 
     <description>
-        A Águia Chegou - Contrate profissionais qualificados perto de você
+        Save Serviço - Contrate profissionais qualificados perto de você
     </description>
 
     <author href="https://fabricadeplugins.tec.br/" email="contato@fabricadeplugins.com.br">
-        A Águia Chegou
+        Save Serviço
     </author>
  
     <!--<engine name="android" spec="^13.0.0" />-->
@@ -32,15 +32,15 @@
     <preference name="exit-on-suspend" value="false" />
     <preference name="disable-cursor" value="false" />
     <preference name="android-installLocation" value="auto" />
-    <preference name="StatusBarBackgroundColor" value="#1b293b" />
+    <preference name="StatusBarBackgroundColor" value="#303030" />
    
     <preference name="AndroidWindowSplashScreenAnimatedIcon" value="www/assets/images/icones/splash.png" />
-    <preference name="AndroidWindowSplashScreenBackground" value="#1b293b" />
+    <preference name="AndroidWindowSplashScreenBackground" value="#303030" />
 
     <preference name="android-minSdkVersion" value="32" />
     <preference name="android-targetSdkVersion" value="35" />
     <preference name="AndroidXEnabled" value="true" />
-    <preference name="StatusBarBackgroundColor" value="#1b293b" />
+    <preference name="StatusBarBackgroundColor" value="#303030" />
     <preference name="StatusBarOverlaysWebView" value="false" />
 
     <plugin name="cordova-plugin-camera" />
@@ -64,7 +64,7 @@
     <plugin name="cordova-plugin-android-permissions" />
     <plugin name="cordova-plugin-inappbrowser" />
     <plugin name="cordova-plugin-statusbar" />
-    <preference name="StatusBarBackgroundColor" value="#1b293b" />
+    <preference name="StatusBarBackgroundColor" value="#303030" />
 
     <plugin name="cordova-plugin-ionic-webview" />
    
