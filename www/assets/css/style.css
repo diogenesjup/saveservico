@@ -99,8 +99,8 @@ label{
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
-    background: #1b293b !important;
-    border-color: #1b293b !important;
+    background: #0088bd !important;
+    border-color: #0088bd !important;
 }
 
 .btn-default,
@@ -143,9 +143,9 @@ header .logo{
 
 header .logo img{
   max-width: 100%;
-  height: auto;
-  width: 169px;
-  margin-top: -2px;
+    height: auto;
+    width: 85px;
+    margin-top: -5px;
 }
 
 header .menu-bar-toggle{
@@ -219,18 +219,20 @@ footer .menu-2 img{
     /* margin-right: auto; */
     margin-top: -42px;
     margin-bottom: -1px;
-    width: 52px;
+    width: 40px;
     height: 52px;
     max-width: 100px;
     left: 50%;
-    height: 52px;
+    height: auto;
     object-fit: cover;
     position: absolute;
-    margin-left: -26px;
+    margin-left: -20px;
+    margin-right: auto;
     top: 0px;
     border-radius: 100%;
+    /* border: 2px solid; */
     padding: 0px;
-    background: #303030;
+    background: transparent;
 }
 
 
@@ -2337,7 +2339,7 @@ p.apoio-servico{
         }
         
         .novo-listing-dashboard-job-option.active {
-            background-color: #333;
+            background-color: #0088bd;
             color: white;
         }
         

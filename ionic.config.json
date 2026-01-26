@@ -1,5 +1,5 @@
 {
-  "name": "com.fabricadeplugins.saveservico",
+  "name": "com.fabricadeplugins.saveservicos",
   "type": "custom",
   "integrations": {
     "cordova": {}
