@@ -1,5 +1,5 @@
 {
-  "name": "com.fabricadeplugins.saveservico",
+  "name": "com.fabricadeplugins.saveservico2",
   "version": "1.2.5",
   "description": "Save Serviços - Contrate profissionais qualificados perto de você",
   "main": "index.html",
@@ -24,7 +24,8 @@
   },
   "cordova": {
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-android-permissions": {},

@@ -3,12 +3,12 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.fabricadeplugins.saveservico"
+        id        = "com.fabricadeplugins.saveservico2"
         version   = "1.2.5">
 
         <!-- LEMBRAR DE MUDAR O APP ID ANTES DE SUBIR O APP NAS LOJAS -->
 
-    <name>Save Serviços</name>
+    <name>SaveServiços</name>
 
     <description>
         Save Serviços - Contrate profissionais qualificados perto de você
