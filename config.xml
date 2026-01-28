@@ -49,10 +49,10 @@
     -->
 
     <!-- Plugin File Transfer -->
-    <plugin name="cordova-plugin-file-transfer" />
+    <!--<plugin name="cordova-plugin-file-transfer" />-->
 
     <!-- Plugin File (dependência do File Transfer) -->
-    <plugin name="cordova-plugin-file" />
+    <!--<plugin name="cordova-plugin-file" />-->
     
 
     <!--
