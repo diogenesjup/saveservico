@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.fabricadeplugins.saveservico"
-        version   = "1.2.2">
+        version   = "1.2.4">
 
         <!-- LEMBRAR DE MUDAR O APP ID ANTES DE SUBIR O APP NAS LOJAS -->
 
@@ -140,6 +140,9 @@
         <splash src="www/assets/images/icones/1024x1024.png" />
         <preference name="LaunchStoryboard" value="CDVLaunchScreen" />
         <preference name="deployment-target" value="13.0" />
+        <preference name="AutoLaunchSplashScreen" value="true" />
+<preference name="LaunchShowDuration" value="3000" />
+
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <icon density="ldpi" height="36" src="www/assets/images/icones/36.png" width="36" />
