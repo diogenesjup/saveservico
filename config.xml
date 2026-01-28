@@ -3,12 +3,12 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.fabricadeplugins.saveservico2"
-        version   = "1.2.5">
+        id        = "com.fabricadeplugins.saveservico"
+        version   = "1.2.6">
 
         <!-- LEMBRAR DE MUDAR O APP ID ANTES DE SUBIR O APP NAS LOJAS -->
 
-    <name>SaveServiços</name>
+    <name>Save Serviços</name>
 
     <description>
         Save Serviços - Contrate profissionais qualificados perto de você
@@ -135,7 +135,6 @@
     <platform name="ios">
 
         <splash src="www/assets/images/icones/1024x1024.png" />
-        <preference name="LaunchStoryboard" value="CDVLaunchScreen" />
         <preference name="deployment-target" value="13.0" />
 
         <!--

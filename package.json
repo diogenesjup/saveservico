@@ -1,6 +1,6 @@
 {
-  "name": "com.fabricadeplugins.saveservico2",
-  "version": "1.2.5",
+  "name": "com.fabricadeplugins.saveservico",
+  "version": "1.2.6",
   "description": "Save Serviços - Contrate profissionais qualificados perto de você",
   "main": "index.html",
   "scripts": {
