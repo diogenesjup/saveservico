@@ -61,6 +61,9 @@
     </edit-config>
     -->
 
+
+    <plugin name="cordova-plugin-splashscreen" spec="^6.0.0" />
+
     <!-- APENAS IOS 
     <plugin name="cordova-plugin-splashscreen" spec="^6.0.0" />
 
