@@ -61,7 +61,7 @@
     </edit-config>
     -->
 
-    <!-- APENAS IOS -->
+    <!-- APENAS IOS 
     <plugin name="cordova-plugin-splashscreen" spec="^6.0.0" />
 
     <preference name="SplashScreen" value="screen" />
@@ -70,7 +70,7 @@
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="FadeSplashScreen" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
-    <!-- APENAS IOS -->
+     APENAS IOS -->
 
     <!--
     <plugin name="cordova-plugin-android-permissions" />
