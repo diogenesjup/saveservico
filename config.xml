@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.fabricadeplugins.saveservico"
-        version   = "1.2.0">
+        version   = "1.2.1">
 
         <!-- LEMBRAR DE MUDAR O APP ID ANTES DE SUBIR O APP NAS LOJAS -->
 
@@ -75,6 +75,14 @@
     <preference name="FadeSplashScreenDuration" value="300" />
      APENAS IOS -->
 
+    <plugin name="cordova-plugin-splashscreen" spec="^6.0.0" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="FadeSplashScreen" value="true" />
+    <preference name="FadeSplashScreenDuration" value="300" />
+
     <!--
     <plugin name="cordova-plugin-android-permissions" />
     <plugin name="cordova-plugin-inappbrowser" />
@@ -131,6 +139,8 @@
     
     </platform>
     <platform name="ios">
+
+        <splash src="www/assets/images/icones/1024x1024.png" />
         <preference name="LaunchStoryboard" value="CDVLaunchScreen" />
         <preference name="deployment-target" value="13.0" />
         <allow-intent href="itms:*" />
