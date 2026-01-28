@@ -62,7 +62,7 @@
     -->
 
 
-    <plugin name="cordova-plugin-splashscreen" spec="^6.0.0" />
+  
 
     <!-- APENAS IOS 
     <plugin name="cordova-plugin-splashscreen" spec="^6.0.0" />
@@ -131,6 +131,7 @@
     
     </platform>
     <platform name="ios">
+        <preference name="LaunchStoryboard" value="CDVLaunchScreen" />
         <preference name="deployment-target" value="13.0" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
