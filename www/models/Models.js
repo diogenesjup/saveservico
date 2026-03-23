@@ -134,7 +134,7 @@ class Models{
                   	 //localStorage.setItem("dadosUsuario",dadosUsuario);
                   	 //app.login(dados.id,dados.email,dadosUsuario);
 
-                     app.verificarCodigoSms();
+                     app.verificarCodigoSms(loginUsuario);
                   
                   }else{
                      

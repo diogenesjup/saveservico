@@ -2979,19 +2979,27 @@ class Views{
         
     }
 
-    viewCodigoSms(){
+    viewCodigoSms(loginUsuario){
 
              this._content.html(`
             
                <div class="row view-login" view-name="view-login">
                   <div class="col-12 wow fadeInRight" data-wow-delay="0.0s" data-wow-duration="0.3s">
                      <h2>Bem vindo de volta!</h2>
-                     <p>Insira o código que recebeu por SMS</p>
+                     <p>Insira o código que recebeu por SMS <br>para o número <strong>${loginUsuario}</strong></p>
                      
                      <form method="post" action="javascript:void(0)" onsubmit="app.procVerificarSms(event)">
                         <div class="form-group">
                            <label>Ele irá chegar em até 2 minutos</label>
-                           <input type="tel" class="form-control text-center" id="codigoSms" placeholder="Digite os cinco digitos que recebeu via SMS" required />
+                           <input 
+                              type="tel" 
+                              class="form-control text-center" 
+                              id="codigoSms" 
+                              placeholder="_ _ _ _ _" required style="height: 62px;font-size: 20px;background:#f9f9f9;" 
+                           />
+                           <small style="display: block;text-align: center;padding-top: 4px;">
+                              Digite os cinco digitos que recebeu via SMS
+                           </small>
                         </div>
                         
                         <div class="form-group">
@@ -3004,30 +3012,29 @@ class Views{
                      
                        <div class="form-group link-apoio text-center">
                             <a href="javascript:void(0)" onclick="app.viewLoginEmailSenha()" title="Prefiro entrar usando e-mail e senha">
-                                Prefiro entrar usando e-mail e senha
+                                Está sem acesso ao celular? Você pode fazer login usando o seu usuário (e-mail) e senha.
                             </a>
                           </div>
 
-                       
                          <div class="form-group link-apoio text-center">
-                            <a href="javascript:void(0)" onclick="app.initApp()" title="Criar uma conta">
-                                Cancelar
-                            </a>
+                           <a 
+                              href="javascript:void(0)" 
+                              onclick="location.reload();" 
+                              title="Cancelar / Voltar"
+                           >
+                                Cancelar / Voltar
+                           </a>
                          </div>
                        
-                     
-
                   </div>
                </div>
             
             `);
 
-
             $("footer").hide();
 
             this.animarTransicao();
             app.helpers.carregarMascaras();
-
 
     }
 

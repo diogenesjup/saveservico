@@ -24,10 +24,22 @@ body{
   }
 }
 
-@media(min-width: 600px){
-  body{
-    display: none;
-  }
+@media(min-width:700px){
+    html{
+      max-width: 400px;
+      position: relative;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      background: #f9f9f9;
+    }
+    body{
+      max-width: 400px;
+      width: 400px;
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+    }
 }
 
 .btn{width: 100%;height: auto;}
@@ -117,9 +129,13 @@ label{
     border-color: #ccc !important;
 }
 
-.link-apoio a{
+.link-apoio a,
+.link-apoio a:hover{
   color: #747474;
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 19px;
+  position: relative;
+  display: block;
 }
 
 /*---------------------------------

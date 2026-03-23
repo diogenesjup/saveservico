@@ -74,9 +74,9 @@ class App {
    
     }
 
-    verificarCodigoSms(){
+    verificarCodigoSms(loginUsuario){
 
-        this.views.viewCodigoSms();
+        this.views.viewCodigoSms(loginUsuario);
 
     }
 
