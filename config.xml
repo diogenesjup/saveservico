@@ -134,6 +134,8 @@
     </platform>
     <platform name="ios">
 
+       <preference name="DevelopmentTeam" value="448W4W2338" />
+
         <splash src="www/assets/images/icones/1024x1024.png" />
         <preference name="deployment-target" value="13.0" />
 
