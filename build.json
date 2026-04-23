@@ -1,0 +1,9 @@
+{
+  "ios": {
+    "release": {
+      "developmentTeam": "448W4W2338",
+      "packageType": "app-store",
+      "codeSignIdentity": "Apple Distribution"
+    }
+  }
+}
