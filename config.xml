@@ -8,7 +8,7 @@
 
         <!-- LEMBRAR DE MUDAR O APP ID ANTES DE SUBIR O APP NAS LOJAS -->
 
-    <name>SaveServicos</name>
+    <name>Save Servicos</name>
 
     <description>
         Save Serviços - Contrate profissionais qualificados perto de você
@@ -135,7 +135,7 @@
     <platform name="ios">
 
        <preference name="DevelopmentTeam" value="448W4W2338" />
-       <preference name="CFBundleDisplayName" value="Save Serviços" />
+       <preference name="CFBundleDisplayName" value="Save Servicos" />
 
         <splash src="www/assets/images/icones/1024x1024.png" />
         <preference name="deployment-target" value="13.0" />
