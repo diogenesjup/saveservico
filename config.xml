@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.fabricadeplugins.saveservico"
-        version   = "1.2.9">
+        version   = "1.2.10">
 
         <!-- LEMBRAR DE MUDAR O APP ID ANTES DE SUBIR O APP NAS LOJAS -->
 
@@ -114,23 +114,16 @@
         <allow-intent href="geo:*" />
     
     </platform>
+    
     <platform name="ios">
-
-       <preference name="DevelopmentTeam" value="448W4W2338" />
-       <preference name="CFBundleDisplayName" value="Save Servicos" />
-
         <splash src="www/assets/images/icones/1024x1024.png" />
+
         <preference name="deployment-target" value="13.0" />
-
-        <!--
-        <preference name="AutoLaunchSplashScreen" value="true" />
-        <preference name="LaunchShowDuration" value="3000" />
-        -->
-
+        <preference name="WKWebViewOnly" value="true" />
         
-
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+
         <icon density="ldpi" height="36" src="www/assets/images/icones/36.png" width="36" />
         <icon density="ldpi" height="40" src="www/assets/images/icones/40.png" width="40" />
         <icon density="mdpi" height="57" src="www/assets/images/icones/57.png" width="57" />
@@ -150,31 +143,10 @@
         <icon density="xxxhdpi" height="768" src="www/assets/images/icones/768.png" width="768" />
         <icon density="xxxhdpi" height="960" src="www/assets/images/icones/960.png" width="960" />
         <icon density="xxxhdpi" height="1024" src="www/assets/images/icones/1024x1024.png" width="1024" />
-        <icon height="20" src="www/assets/images/icones/20.png" width="20" />
-        <icon height="60" src="www/assets/images/icones/60.png" width="60" />
-        <icon height="29" src="www/assets/images/icones/29.png" width="29" />
-        <icon height="58" src="www/assets/images/icones/58.png" width="58" />
-        <icon height="87" src="www/assets/images/icones/87.png" width="87" />
-        <icon height="76" src="www/assets/images/icones/76.png" width="76" />
-        <icon height="152" src="www/assets/images/icones/152.png" width="152" />
-        <icon height="167" src="www/assets/images/icones/167.png" width="167" />
 
-        <preference name="WKWebViewOnly" value="true" />
         <plugin name="cordova-plugin-ionic-webview" spec="^5.0.0" />
         <plugin name="cordova-plugin-whitelist" spec="^1.3.4" />
         <plugin name="cordova-plugin-statusbar" spec="^2.4.3" />
-        <plugin name="cordova-plugin-audiotoggle" />
-
-        <plugin name="cordova-plugin-splashscreen" spec="^6.0.0" />
-
-        <preference name="SplashScreen" value="screen" />
-        <preference name="AutoHideSplashScreen" value="true" />
-        <preference name="SplashScreenDelay" value="3000" />
-        <preference name="FadeSplashScreen" value="true" />
-        <preference name="FadeSplashScreenDuration" value="300" />
-        <preference name="ShowSplashScreenSpinner" value="false" />
-        <preference name="LaunchStoryboardName" value="LaunchScreen" />
-
     </platform>
 
     
