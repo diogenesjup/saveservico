@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.fabricadeplugins.saveservico"
-        version   = "1.2.11">
+        version   = "1.2.12">
 
         <!-- LEMBRAR DE MUDAR O APP ID ANTES DE SUBIR O APP NAS LOJAS -->
 
@@ -143,6 +143,16 @@
         <icon density="xxxhdpi" height="512" src="www/assets/images/icones/512.png" width="512" />
         <icon density="xxxhdpi" height="768" src="www/assets/images/icones/768.png" width="768" />
         <icon density="xxxhdpi" height="960" src="www/assets/images/icones/960.png" width="960" />
+
+        <icon height="20" src="www/assets/images/icones/20.png" width="20" />
+        <icon height="29" src="www/assets/images/icones/29.png" width="29" />
+        <icon height="58" src="www/assets/images/icones/58.png" width="58" />
+        <icon height="87" src="www/assets/images/icones/87.png" width="87" />
+        <icon height="60" src="www/assets/images/icones/60.png" width="60" />
+        <icon height="80" src="www/assets/images/icones/80.png" width="80" />
+        <icon height="76" src="www/assets/images/icones/76.png" width="76" />
+        <icon height="167" src="www/assets/images/icones/167.png" width="167" />
+
         <icon density="xxxhdpi" height="1024" src="www/assets/images/icones/1024x1024.png" width="1024" />
 
         <plugin name="cordova-plugin-ionic-webview" spec="^5.0.0" />
