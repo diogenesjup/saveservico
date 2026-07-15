@@ -2857,12 +2857,7 @@ class Views{
                                   <p style="font-size:14px;">
                                     Precisa de ajuda ou suporte?
                                   </p>
-                                  <p style="font-size:14px;">
-                                    Deseja excluir ou remover os dados da sua conta?
-                                  </p>
-                                  <p style="font-size:14px;">
-                                    É só enviar um e-mail para <b>saveservico@gmail.com</b>, colocando no assunto a sua dúvida ou solicitação, que responderemos o mais rápido possível.
-                                  </p> 
+                                  
 
                                   <p>&nbsp;</p>
                                   
@@ -2877,6 +2872,13 @@ class Views{
                                       </p>
 
                                   </div>
+
+                                  <p style="font-size:14px;border-top:1px solid #ccc;color:#ff0000;padding-top:20px;margin-top:30px;text-align:center;">
+                                    Deseja excluir ou remover os dados da sua conta?
+                                  </p>
+                                  <p style="font-size:14px;">
+                                    <a href="javascript:void(0)" onclick="app.excluirConta()" title="Excluir minha conta" class="btn btn-primary" style="background-color: #dc3545 !important;border-color: #dc3545 !important;margin-top: 20px;padding-top: 9px;">Clique aqui para excluir sua conta</a>
+                                  </p> 
 
                                  <p>&nbsp;</p>
                                  <p>&nbsp;</p>
