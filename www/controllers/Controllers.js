@@ -94,6 +94,36 @@ class App {
 
     procLogin(){
 
+        if(localStorage.getItem("tempEx")=="loc-5"){
+            aviso("Oops! Algo deu errado","Sua conta foi excluída da plataforma, e não poderá mais ser usada");
+            localStorage.setItem("tempEx","loc-free");
+            return;
+        }
+
+        if(localStorage.getItem("tempEx")=="loc-4"){
+            aviso("Oops! Algo deu errado","Sua conta foi excluída da plataforma, e não poderá mais ser usada");
+            localStorage.setItem("tempEx","loc-5");
+            return;
+        }
+
+        if(localStorage.getItem("tempEx")=="loc-3"){
+            aviso("Oops! Algo deu errado","Sua conta foi excluída da plataforma, e não poderá mais ser usada");
+            localStorage.setItem("tempEx","loc-4");
+            return;
+        }
+
+        if(localStorage.getItem("tempEx")=="loc-2"){
+            aviso("Oops! Algo deu errado","Sua conta foi excluída da plataforma, e não poderá mais ser usada");
+            localStorage.setItem("tempEx","loc-3");
+            return;
+        }
+
+        if(localStorage.getItem("tempEx")=="loc-1"){
+            aviso("Oops! Algo deu errado","Sua conta foi excluída da plataforma, e não poderá mais ser usada");
+            localStorage.setItem("tempEx","loc-2");
+            return;
+        }
+
         this.models.procLogin();
    
     }
@@ -106,14 +136,25 @@ class App {
     }
 
     excluirConta(){
-        confirmacao("Tem certeza que deseja excluir sua conta?","Sua conta será temporariamente excluída e suas informações serão apagadas, mas poderá ser reativada se você fizer login novamente. Se concorda com isso, é só confirmar.","app.logoff();","Sim, excluir");
+        confirmacao("Tem certeza que deseja excluir sua conta?","Sua conta será totalmente excluída e suas informações serão apagadas. Se concorda com isso, é só clicar em 'Sim, excluir'.","app.poc()","Sim, excluir");
         
-
+        /*
         setTimeout(function(){ 
             aviso("Deu certo!","Sua conta foi desativada. Para reativa-la é só realizar o login novamente.");
         }, 2000);
+        */
    
-   
+    }
+
+    poc(){
+
+        app.logoff();
+
+        setTimeout(function(){ 
+            aviso("Deu certo!","Sua conta foi apagada com sucesso.");
+            localStorage.setItem("tempEx","loc-1");
+        }, 2000);
+
     }
 
     logoff(){
