@@ -1,11 +1,12 @@
 class App {
 
-    constructor(appId, appName, appVersion, appOs, ambiente, token, tokenSms) {
+    constructor(appId, appName, appVersion, appOs, ambiente, token, tokenSms, appEmailSuporte) {
 
         this.appId      = appId;
         this.appName    = appName;
         this.appVersion = appVersion;        
         this.appOs      = appOs;
+        this.emailSuporte = appEmailSuporte;
 
         this.views   = new Views();
         this.sessao  = new Sessao();
@@ -513,7 +514,7 @@ filtrotabela(){
 
     }else{
 
-          aviso("Oops! Você não pode atender a esse orçamento","Suas categorias de atendimento não permitem atender a esse tipo de orçamento. Para alterar as suas categorias de atendimento, envie um e-mail para <b>suporte@resolvaja.tec.br</b>");  
+          aviso("Oops! Você não pode atender a esse orçamento","Suas categorias de atendimento não permitem atender a esse tipo de orçamento. Para alterar as suas categorias de atendimento, envie um e-mail para <b>"+app.emailSuporte+"</b>");  
 
     }
         
