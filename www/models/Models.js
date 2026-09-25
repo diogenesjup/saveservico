@@ -11,14 +11,18 @@ class Models{
                   data:{token:app.token}
               
               })
+              var self = this;
               request.done(function (dados) {            
 
                   console.log("%c VERIFICAÇÃO DE DISPONIBILIDADE DE API","background:#ff0000;color:#fff;");
                   console.log(dados);
 
                   // SALVAR NA MEMÓRIA AS CATEGORIAS
-                  localStorage.setItem("herancaCategorias",JSON.stringify(dados.categorias));
-                  localStorage.setItem("categoiasAtendimento",JSON.stringify(dados.categorias));
+                  if (dados && dados.categorias) {
+                      var estruturado = self.processarEstruturaCategorias(dados.categorias);
+                      localStorage.setItem("herancaCategorias",JSON.stringify(estruturado.categorias));
+                      localStorage.setItem("categoiasAtendimento",JSON.stringify(estruturado));
+                  }
 
               });
               request.fail(function (dados) {
@@ -481,6 +485,75 @@ class Models{
 
     }
 
+    processarEstruturaCategorias(categorias){
+        var categoriasUnicas = [];
+        var catMap = {};
+        var idsVistos = {};
+        var todas = categorias || [];
+
+        for (var i = 0; i < todas.length; i++) {
+            var item = todas[i];
+            if (item && item.id && !idsVistos[item.id]) {
+                idsVistos[item.id] = true;
+                var rel = [];
+                if (Array.isArray(item.relacao)) {
+                    rel = item.relacao.map(Number);
+                } else if (typeof item.relacao === 'number') {
+                    rel = [item.relacao];
+                }
+                item.relacao = rel;
+                item.filhas = [];
+                categoriasUnicas.push(item);
+                catMap[item.id] = item;
+            }
+        }
+
+        // No banco de dados ACF, as categorias filhas possuem o ID do pai no campo 'categoria_filha' (relacao).
+        // Exemplo: Acupuntura (1700) tem relacao: [1675] (Saúde).
+        // Mapeamos os IDs dos pais e populamos catMap[pai].filhas
+        var paisReferenciados = {};
+        var categoriasFilhas = {};
+        for (var i = 0; i < categoriasUnicas.length; i++) {
+            var c = categoriasUnicas[i];
+            if (c.relacao && c.relacao.length > 0) {
+                categoriasFilhas[c.id] = true;
+                for (var j = 0; j < c.relacao.length; j++) {
+                    var pId = c.relacao[j];
+                    paisReferenciados[pId] = true;
+                    if (catMap[pId]) {
+                        var jaExiste = catMap[pId].filhas.some(function(f){ return f.id === c.id; });
+                        if (!jaExiste) {
+                            catMap[pId].filhas.push({
+                                id: c.id,
+                                titulo: c.titulo,
+                                url: c.url,
+                                imagem: c.imagem,
+                                descricao: c.descricao
+                            });
+                        }
+                    }
+                }
+            }
+        }
+
+        // Categorias pais: as referenciadas como pais OU que não são filhas de ninguém
+        var categoriasPais = [];
+        for (var i = 0; i < categoriasUnicas.length; i++) {
+            var c = categoriasUnicas[i];
+            var isPai = !!paisReferenciados[c.id] || !categoriasFilhas[c.id];
+            c.is_pai = isPai;
+            if (isPai) {
+                categoriasPais.push(c);
+            }
+        }
+
+        return {
+            sucesso: "200",
+            categorias: categoriasUnicas,
+            categorias_pais: categoriasPais
+        };
+    }
+
 /**
 *  ------------------------------------------------------------------------------------------------
 *
@@ -515,29 +588,31 @@ categoriasAtendimento(){
               
               var dados = JSON.parse(xhr.responseText);
 
+              // Processa e estrutura categorias pais e filhas corretamente
+              var estruturado = this.processarEstruturaCategorias(dados.categorias);
+              dados.categorias = estruturado.categorias;
+              dados.categorias_pais = estruturado.categorias_pais;
+
               // SALVAR AS CATEGORIAS NA MEMORIA
-              localStorage.setItem("categoiasAtendimento",JSON.stringify(dados));
+              localStorage.setItem("categoiasAtendimento", JSON.stringify(dados));
 
-              $("#listaDeCategorias").html(`
-
-                  ${dados.categorias.map((n) => {
-
-                      if(n.relacao.length==0){
-
-                              return `
-                                  
-                                 <li>
-                                     <a href="javascript:void(0)" onclick="app.novoAtendimentoPasso2(${n.id},'${n.titulo}')" title="${n.titulo}">
+              // RENDERIZAR CATEGORIAS PAIS
+              if (app.views && typeof app.views.renderCategoriasPais === "function") {
+                  app.views.renderCategoriasPais(dados.categorias_pais);
+              } else {
+                  $("#listaDeCategorias").html(`
+                      ${dados.categorias_pais.map((n) => {
+                          var tituloEscaped = String(n.titulo).replace(/'/g, "\\'");
+                          return `
+                              <li>
+                                  <a href="javascript:void(0)" onclick="app.novoAtendimentoPasso2(${n.id},'${tituloEscaped}')" title="${n.titulo}">
                                       ${n.titulo} <img src="assets/images/right.svg" alt="Ver mais">
-                                     </a>
-                                  </li>
-
-                              `
-                       }
-
-                       }).join('')}
-
-              `);
+                                  </a>
+                              </li>
+                          `;
+                      }).join('')}
+                  `);
+              }
               
 
             }else{
@@ -1154,7 +1229,18 @@ pacoteChaves(){
                               temp++;
                               if(temp>1){ checked = ""; }
 
-                              resultado = n.valor_blr / 4;
+                              var valor = parseFloat(n.valor_blr) || 0;
+                              var parcelamentoHtml = "";
+
+                              if(valor > 100){
+                                  var resultado = (valor / 3).toFixed(2).replace(".",",");
+                                  parcelamentoHtml = `
+                                      <span>
+                                        <d>ou em até 3X de</d>
+                                        R$ ${resultado}
+                                      </span>
+                                  `;
+                              }
 
                               return `
                                   
@@ -1165,10 +1251,7 @@ pacoteChaves(){
                                       <img src="assets/images/simbolo.svg" alt="Comprar ${n.qtd_chaves} Chaves" />  
                                       ${n.qtd_chaves} ${app.nomeMoedaPlural}
                                       <small>À vista por R$ ${n.valor_blr.replace(".",",")}<br>Validade de ${n.validade_dias} dias</small>
-                                      <span>
-                                        <d>ou em até 4X de</d>
-                                        R$ ${resultado.toFixed(2).replace(".",",")}
-                                      </span>
+                                      ${parcelamentoHtml}
                                     </label>
                                  </div>
                                  <!-- PACOTE -->
@@ -1230,8 +1313,6 @@ selecaoPacoteDeChaves(pacoteEscolhido){
 
               console.log("COMECANDO A IMPRIMIR OS PACOTES NA TELA:");
 
-              app.views.paginaDeCmopra();
-
               for(let i = 0;i<dados.pacotes.length;i++){
 
                     if(pacoteEscolhido==dados.pacotes[i].qtd_chaves){
@@ -1241,8 +1322,20 @@ selecaoPacoteDeChaves(pacoteEscolhido){
                         localStorage.setItem("valorPagamentoOriginal",dados.pacotes[i].valor_blr);
                         localStorage.setItem("qtd_chaves",dados.pacotes[i].qtd_chaves);
 
-                        var resultado = dados.pacotes[i].valor_blr / 4;
-                        resultado = resultado.toFixed(2).replace(".",",");
+                        app.views.paginaDeCmopra(dados.pacotes[i].valor_blr);
+
+                        var valorOriginal = parseFloat(dados.pacotes[i].valor_blr) || 0;
+                        var parcelamentoHtml = "";
+
+                        if(valorOriginal > 100){
+                            var resultado = (valorOriginal / 3).toFixed(2).replace(".",",");
+                            parcelamentoHtml = `
+                                <span>
+                                  <d>ou em até 3X de</d>
+                                  R$ ${resultado}
+                                </span>
+                            `;
+                        }
 
                         $("#pacoteEscolhido").html(`
 
@@ -1253,10 +1346,7 @@ selecaoPacoteDeChaves(pacoteEscolhido){
                                       <img src="assets/images/simbolo.svg" alt="Comprar ${pacoteEscolhido} ${app.nomeMoedaPlural}" />  
                                       ${pacoteEscolhido} ${app.nomeMoedaPlural} 
                                       <small>À vista por R$ ${dados.pacotes[i].valor_blr.replace(".",",")}</small>
-                                      <span>
-                                        <d>ou em até 4X de</d>
-                                        R$ ${resultado}
-                                      </span>
+                                      ${parcelamentoHtml}
                                     </label>
                                  </div>
                                  <!-- PACOTE -->
@@ -1264,44 +1354,21 @@ selecaoPacoteDeChaves(pacoteEscolhido){
                         `);
 
 
-                        window.setTimeout(function(){
-                            console.log("Iniciando teste de parcelas");
-                            console.log(dados.pacotes);
-                            // CARREGANDO PARCELAS
-                            var j = 1;
-
-                            for(let k = 0;k<4;k++){
-
-                                var divisao = dados.pacotes[i].valor_blr / j;
-                                divisao = divisao.toFixed(2).replace(".",",");
-
-                                console.log("DIVISAO: ");
-                                console.log(divisao);
-
-                                if(parseInt(divisao)>=5){
-
-                                  console.log("IMPRMINDO VALORES...");
-
-                                  $("#pagtoCCParcelas").append(`
-                                      <option value="${j}">${j}x de R$ ${divisao}</option>
-                                  `);
-
-                                }
-
-                                j++;
-
-                            }// FINAL DO FOR DE PARCELAS
-
-                            // CONTROLE DO VALOR MINIMO DE PARCELAS
-                            if(parseInt(dados.pacotes[i].valor_blr)<=5){
-
-                              $("#pagtoCCParcelas").append(`
-                                      <option value="1">1x de R$ ${dados.pacotes[i].valor_blr}</option>
-                                  `);
-
+                        // CARREGANDO PARCELAS
+                        $("#pagtoCCParcelas").html("");
+                        if(valorOriginal > 100){
+                            for(let j = 1; j <= 3; j++){
+                                let divisao = (valorOriginal / j).toFixed(2).replace(".", ",");
+                                $("#pagtoCCParcelas").append(`
+                                    <option value="${j}">${j}x de R$ ${divisao}</option>
+                                `);
                             }
-
-                          },3000);
+                        } else {
+                            let valorFormatado = valorOriginal.toFixed(2).replace(".", ",");
+                            $("#pagtoCCParcelas").append(`
+                                <option value="1">1x de R$ ${valorFormatado}</option>
+                            `);
+                        }
 
 
                     }

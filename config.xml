@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.fabricadeplugins.saveservico"
-        version   = "1.2.16">
+        version   = "1.2.20">
 
         <!-- LEMBRAR DE MUDAR O APP ID ANTES DE SUBIR O APP NAS LOJAS -->
 
@@ -14,7 +14,7 @@
         Save Serviços - Contrate profissionais qualificados perto de você
     </description>
 
-    <author href="https://fabricadeplugins.tec.br/" email="contato@fabricadeplugins.com.br">
+    <author href="https://fabricadeplugins.com.br/" email="contato@fabricadeplugins.com.br">
         Save Serviços
     </author>
  

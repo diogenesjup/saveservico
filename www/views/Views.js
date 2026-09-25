@@ -93,7 +93,7 @@ class Views{
                <div class="row view-dashboard" view-name="view-dashboard">
                   <div class="col-12 wow fadeInUp" data-wow-delay="0.0s" data-wow-duration="0.3s">
                      
-                      <!-- BUSCA PRINCIPAL -->
+                       <!-- BUSCA PRINCIPAL -->
                      <div class="input-group busca-principal">
                         <input type="text" class="form-control" onkeyup="app.filtrotabela();" id="filtroTabela" placeholder="Do que você está precisando hoje?" aria-label="Do que você está precisando hoje?" aria-describedby="busca-principal">
                         <div class="input-group-append">
@@ -126,9 +126,92 @@ class Views{
 
             this.animarTransicao();
 
+            // Se já tiver categorias salvas no localStorage, exibe as categorias pais imediatamente
+            var dadosCache = localStorage.getItem("categoiasAtendimento");
+            if (dadosCache) {
+                try {
+                    var dadosObj = JSON.parse(dadosCache);
+                    var lista = Array.isArray(dadosObj) ? dadosObj : (dadosObj.categorias || []);
+                    var pais = dadosObj.categorias_pais;
+                    // Se não tiver categorias_pais válidas (ex: cache antigo ou lista invertida com mais de 10)
+                    if (!pais || !Array.isArray(pais) || pais.length === 0 || pais.length > 10) {
+                        if (app.models && typeof app.models.processarEstruturaCategorias === "function") {
+                            var estruturado = app.models.processarEstruturaCategorias(lista);
+                            pais = estruturado.categorias_pais;
+                        }
+                    }
+                    if (pais && pais.length > 0) {
+                        this.renderCategoriasPais(pais);
+                    }
+                } catch(e) {}
+            }
+
             $("footer").fadeOut(); // TALVEZ O RODAPE SEJA APENAS PARA USUÁRIO COLABORADORES
             $("header .menu-bar-toggle").fadeIn(500);
         
+    }
+
+    renderCategoriasPais(categoriasPais){
+        if (!categoriasPais || categoriasPais.length === 0) {
+            $("#listaDeCategorias").html(`
+                <li style="text-align:left;font-size:13px;">
+                    Nenhuma categoria encontrada
+                </li>
+            `);
+            return;
+        }
+
+        $("#fraseDeAbertura").fadeIn(1);
+
+        $("#listaDeCategorias").html(`
+            ${categoriasPais.map((n) => {
+                var tituloEscaped = String(n.titulo).replace(/'/g, "\\'");
+                return `
+                    <li>
+                        <a href="javascript:void(0)" onclick="app.novoAtendimentoPasso2(${n.id},'${tituloEscaped}')" title="${n.titulo}">
+                            ${n.titulo} <img src="assets/images/right.svg" alt="Ver mais">
+                        </a>
+                    </li>
+                `;
+            }).join('')}
+        `);
+    }
+
+    renderCategoriasFilhas(catPai, filhas){
+        var tituloPaiEscaped = String(catPai.titulo).replace(/'/g, "\\'");
+
+        var htmlFilhas = filhas.map((n) => {
+            var tituloEscaped = String(n.titulo).replace(/'/g, "\\'");
+            return `
+                <li>
+                    <a href="javascript:void(0)" onclick="app.novoAtendimentoPasso3(${n.id},'${tituloEscaped}')" title="${n.titulo}">
+                        ${n.titulo} <img src="assets/images/right.svg" alt="Ver mais">
+                    </a>
+                </li>
+            `;
+        }).join('');
+
+        $("#listaDeCategorias").html(`
+            <li class="item-voltar-categorias" style="border-bottom:1px solid #e2e8f0;margin-bottom:8px;padding-bottom:6px;">
+                <a href="javascript:void(0)" onclick="app.opcoesCarretamentoPerfilCliente();" style="color:#007bff;font-size:13px;font-weight:600;">
+                    <img src="assets/images/voltar-views.svg" alt="Voltar" style="width:13px;margin-right:6px;vertical-align:middle;" /> Voltar para todas as categorias
+                </a>
+            </li>
+
+            <li class="categoria-pai-geral" style="background:#f1f5f9;border-radius:6px;margin-bottom:8px;">
+                <a href="javascript:void(0)" onclick="app.novoAtendimentoPasso3(${catPai.id},'${tituloPaiEscaped}')" title="${catPai.titulo}">
+                    <b>${catPai.titulo} (Geral)</b> <img src="assets/images/right.svg" alt="Ver mais">
+                </a>
+            </li>
+
+            ${htmlFilhas}
+
+            <li style="text-align:center;padding-top:16px;border:none;">
+                <a href="javascript:void(0)" onclick="app.opcoesCarretamentoPerfilCliente();" title="VOLTAR AO INÍCIO" style="color:#747474;font-size:12px;text-decoration:none;">
+                    VOLTAR AO INÍCIO
+                </a>
+            </li>
+        `);
     }
 
 
@@ -1217,7 +1300,8 @@ class Views{
 
     selecionarMinhasCategorias(){
        
-            var categorias = JSON.parse(localStorage.getItem("categoiasAtendimento"));
+            var categoriasData = JSON.parse(localStorage.getItem("categoiasAtendimento"));
+            var categorias = Array.isArray(categoriasData) ? categoriasData : ((categoriasData && categoriasData.categorias) ? categoriasData.categorias : []);
             console.log(categorias);
 
             $("footer").css("opacity",1);
@@ -1624,8 +1708,33 @@ class Views{
     }
 
 
-    paginaDeCmopra(){
+    paginaDeCmopra(valor){
        
+            var valorOriginal = 0;
+            var valorStorage = valor || localStorage.getItem("valorPagamentoOriginal");
+            if(valorStorage){
+                var strVal = String(valorStorage).trim();
+                if(strVal.indexOf(",") !== -1 && strVal.indexOf(".") !== -1){
+                    strVal = strVal.replace(/\./g, "").replace(",", ".");
+                } else if(strVal.indexOf(",") !== -1){
+                    strVal = strVal.replace(",", ".");
+                }
+                valorOriginal = parseFloat(strVal) || 0;
+            }
+
+            var parcelasHtml = "";
+            if(valorOriginal > 100){
+                for(let j = 1; j <= 3; j++){
+                    let divisao = (valorOriginal / j).toFixed(2).replace(".", ",");
+                    parcelasHtml += `<option value="${j}">${j}x de R$ ${divisao}</option>\n`;
+                }
+            } else if(valorOriginal > 0){
+                let valorFormatado = valorOriginal.toFixed(2).replace(".", ",");
+                parcelasHtml += `<option value="1">1x de R$ ${valorFormatado}</option>\n`;
+            } else {
+                parcelasHtml += `<option value="1">1x</option>\n`;
+            }
+
             this._content.html(`
             
                <div class="row view-comprar-chaves view-finalizar-comprar" view-name="view-2">
@@ -1705,7 +1814,7 @@ class Views{
                                                               <div class="col-12 form-group">
                                                                  <label>Parcelas</label>
                                                                  <select class="form-control" name="pagtoCCParcelas" id="pagtoCCParcelas">
-                                                                  
+                                                                    ${parcelasHtml}
                                                                  </select>
                                                               </div>
                                                           </div>
